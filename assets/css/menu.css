@@ -1,0 +1,62 @@
+
+
+
+
+/* Thanh menu ngang */
+.menu-bar {
+    list-style: none;
+    display: flex;
+    background-color: #f0f0f0;
+    padding: 4px 8px;
+    border-bottom: 1px solid #ccc;
+}
+
+.menu-item {
+    position: relative;
+    padding: 6px 12px;
+    cursor: default;
+    user-select: none;
+}
+
+.menu-item a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.menu-item:hover {
+    background-color: #dcdcdc;
+}
+
+/* Menu con của Hệ thống */
+.submenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    list-style: none;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    min-width: 260px;
+    display: none;
+    z-index: 1000;
+}
+
+.submenu li {
+    padding: 6px 10px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.submenu li:hover {
+    background-color: #e6e6e6;
+}
+
+/* Hiện submenu khi hover Hệ thống */
+.menu-item.he-thong:hover .submenu {
+    display: block;
+}
+
+
+
+
+
+

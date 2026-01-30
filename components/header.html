@@ -1,0 +1,99 @@
+
+<!-- components/header.html -->
+<ul class="menu-bar">
+    <li class="menu-item he-thong">
+        Hệ thống
+        <ul class="submenu">
+            <li id="menu-tao-moi">Tạo mới file dữ liệu</li>
+            <li id="menu-mo-cu">Mở file dữ liệu cũ</li>
+            <li id="menu-sao-luu">Sao lưu file dữ liệu</li>
+            <li id="menu-sao-luu-mo">Sao lưu và mở file dữ liệu</li>
+            <li id="menu-doi-mk">Thay đổi mật khẩu</li>
+            <li id="menu-thoat">Thoát</li>
+        </ul>
+    </li>
+    <li class="menu-item">Dữ liệu</li>
+    <li class="menu-item">Ràng buộc TKB</li>
+    <li class="menu-item">Soạn thảo</li>
+    <li class="menu-item">Thống kê</li>
+    <li class="menu-item">Xem</li>
+    <li class="menu-item">Trợ giúp</li>
+</ul>
+
+<!-- input file ẩn để liên kết với dữ liệu máy tính -->
+<input type="file" id="fileInputNew" style="display:none;">
+<input type="file" id="fileInputOpen" style="display:none;">
+<input type="file" id="fileInputBackupOpen" style="display:none;">
+
+<!-- MODAL THAY ĐỔI MẬT KHẨU -->
+<div class="modal-overlay" id="passwordModal">
+    <div class="modal">
+        <h3>Thay đổi mật khẩu</h3>
+        <div class="form-row">
+            <label for="oldPassword">Nhập mật khẩu cũ:</label>
+            <input type="password" id="oldPassword">
+        </div>
+        <div class="form-row">
+            <label for="newPassword">Nhập mật khẩu mới:</label>
+            <input type="password" id="newPassword">
+        </div>
+        <div class="form-row">
+            <label for="confirmPassword">Nhập lại mật khẩu mới:</label>
+            <input type="password" id="confirmPassword">
+        </div>
+        <div class="modal-buttons">
+            <button id="btnCancel">Hủy bỏ</button>
+            <button id="btnAccept">Chấp nhận</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<!-- components/header.html -->
+<header class="main-header">
+    <nav class="main-menu">
+        <ul class="menu-root">
+            <!-- HỆ THỐNG -->
+            <li class="menu-item has-submenu">
+                <a href="#" class="menu-link">Hệ thống</a>
+                <ul class="submenu">
+                    <li><a href="#" id="menu-tao-moi">Tạo mới file dữ liệu</a></li>
+                    <li><a href="#" id="menu-mo-cu">Mở file dữ liệu cũ</a></li>
+                    <li><a href="#" id="menu-sao-luu">Sao lưu file dữ liệu</a></li>
+                    <li><a href="#" id="menu-sao-luu-mo">Sao lưu và mở file dữ liệu</a></li>
+                    <li><a href="#" id="menu-doi-mk">Thay đổi mật khẩu</a></li>
+                    <li><a href="#" id="menu-thoat">Thoát</a></li>
+                </ul>
+            </li>
+
+            <!-- CÁC MỤC KHÁC -->
+            <li class="menu-item">
+                <a href="pages/du-lieu.html" class="menu-link">Dữ liệu</a>
+            </li>
+            <li class="menu-item">
+                <a href="pages/rang-buoc.html" class="menu-link">Ràng buộc TKB</a>
+            </li>
+            <li class="menu-item">
+                <a href="pages/soan-thao.html" class="menu-link">Soạn thảo</a>
+            </li>
+            <li class="menu-item">
+                <a href="pages/thong-ke.html" class="menu-link">Thống kê</a>
+            </li>
+            <li class="menu-item">
+                <a href="pages/xem.html" class="menu-link">Xem</a>
+            </li>
+            <li class="menu-item">
+                <a href="pages/tro-giup.html" class="menu-link">Trợ giúp</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+
+
+
+
