@@ -2,7 +2,8 @@ const fs = require('fs')
 const path = require('path')
 
 const DB_MAP = {
-  'grade': process.env.GRADE_DB_PATH
+  'grade': process.env.GRADE_DB_PATH,
+  'user': process.env.USER_DB_PATH
 };
 
 const getDBPath = (key)=>{

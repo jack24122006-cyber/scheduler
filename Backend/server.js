@@ -1,11 +1,10 @@
 const express = require('express')
 const cors = require('cors')
-const dotenv = require('dotenv')
+const dotenv = require('dotenv').config()
+require('./config/env.validation')
 const morgan = require('morgan')
 
-// Load env variables
-dotenv.config()
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3001
 
 const app = express()
 
@@ -19,6 +18,7 @@ app.get('/',(req,res)=>{
     res.send("Hello world")
 })
 app.use('/api/grade', require('./routes/grade.routes'))
+app.use('/api/auth', require('./routes/auth.routes'))
 
 
 // Start the server
