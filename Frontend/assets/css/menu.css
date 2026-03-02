@@ -1,58 +1,216 @@
-
-
-
-
-/* Thanh menu ngang */
-.menu-bar {
-    list-style: none;
-    display: flex;
-    background-color: #f0f0f0;
-    padding: 4px 8px;
-    border-bottom: 1px solid #ccc;
+body{
+  margin:0;
+  font-family: Segoe UI, Arial, sans-serif;
+  font-size:13px;
 }
 
-.menu-item {
-    position: relative;
-    padding: 6px 12px;
-    cursor: default;
-    user-select: none;
+/* ===== MENU BAR (1 hàng duy nhất) ===== */
+.menu-bar{
+  list-style:none;
+  display:flex;
+  align-items:center;
+  gap:16px;
+  margin:0;
+  padding:6px 10px;
+  background:#f5f5f5;
+  border-bottom:1px solid #ccc;
 }
 
-.menu-item a {
-    text-decoration: none;
-    color: inherit;
+/* menu item */
+.menu-bar > li{
+  position:relative;
+  padding:4px 8px;
+  cursor:pointer;
+  user-select:none;
 }
 
-.menu-item:hover {
-    background-color: #dcdcdc;
+.menu-bar > li:hover{
+  text-decoration:underline;
 }
 
-/* Menu con của Hệ thống */
-.submenu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    list-style: none;
-    background-color: #ffffff;
-    border: 1px solid #ccc;
-    min-width: 260px;
-    display: none;
-    z-index: 1000;
+/* ===== SUBMENU ===== */
+.submenu{
+  list-style:none;
+  position:absolute;
+  top:100%;
+  left:0;
+  margin:0;
+  padding:4px 0;
+  min-width:240px;
+  background:#fff;
+  border:1px solid #ccc;
+  display:none;
+  z-index:1000;
 }
 
-.submenu li {
-    padding: 6px 10px;
-    cursor: pointer;
-    white-space: nowrap;
+.submenu li{
+  padding:6px 10px;
+  cursor:pointer;
 }
 
-.submenu li:hover {
-    background-color: #e6e6e6;
+.submenu li:hover{
+  background:#e6f0ff;
 }
 
-/* Hiện submenu khi hover Hệ thống */
-.menu-item.he-thong:hover .submenu {
-    display: block;
+/* hover hệ thống */
+.system:hover .submenu{
+  display:block;
+}
+
+/* ===== FORM ĐỔI MẬT KHẨU ===== */
+#passwordBox{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.3);
+  display:none;
+}
+
+#passwordBox .box{
+  background:#fff;
+  width:280px;
+  padding:15px;
+  margin:120px auto;
+  border-radius:4px;
+}
+
+
+/* ===== MENU TRƯỢT BẬC 2 ===== */
+
+/* submenu mặc định */
+.submenu{
+  list-style:none;
+  position:absolute;
+  top:100%;
+  left:0;
+  background:#fff;
+  border:1px solid #ccc;
+  padding:4px 0;
+  margin:0;
+  min-width:220px;
+  display:none;
+  z-index:1000;
+}
+
+/* hiện submenu khi hover */
+.menu-bar > li:hover > .submenu,
+.submenu > li:hover > .submenu{
+  display:block;
+}
+
+/* item trong submenu */
+.submenu li{
+  position:relative;
+  padding:6px 10px;
+  white-space:nowrap;
+  cursor:pointer;
+}
+
+/* hover item */
+.submenu li:hover{
+  background:#e6f0ff;
+}
+
+/* submenu bậc 2 xổ sang phải */
+.submenu-right{
+  top:0;
+  left:100%;
+}
+
+
+
+/* nền mờ */
+.modal{
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.3);
+}
+
+/* khung form */
+.modal-content{
+  background:#fff;
+  width:520px;
+  margin:70px auto;
+  border:1px solid #aaa;
+  font-size:13px;
+}
+
+/* tiêu đề */
+.modal-header{
+  padding:8px 10px;
+  font-weight:bold;
+  background:#f2f2f2;
+  border-bottom:1px solid #ccc;
+}
+
+/* nội dung */
+.modal-body{
+  padding:10px;
+}
+
+/* bảng form */
+.form-table{
+  width:100%;
+}
+
+.form-table td{
+  padding:5px;
+}
+
+.form-table td:first-child{
+  width:150px;
+}
+
+.form-table input,
+.form-table select{
+  width:100%;
+  box-sizing:border-box;
+}
+
+/* footer */
+.modal-footer{
+  padding:8px 10px;
+  text-align:right;
+  border-top:1px solid #ccc;
+} 
+
+/* THANH TOOLBA */
+.toolbar {
+  display: flex;
+  align-items: center;
+  padding: 4px 6px;
+  background: #efefef;
+  border-bottom: 1px solid #c8c8c8;
+  gap: 2px;
+}
+
+.toolbar button {
+  width: 30px;
+  height: 28px;
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  font-size: 16px;
+  color: #333;
+}
+
+.toolbar button:hover {
+  background: #e0e0e0;
+  border: 1px solid #9c9c9c;
+}
+
+.toolbar button:active {
+  background: #d0d0d0;
+}
+
+.sep {
+  width: 1px;
+  height: 20px;
+  background: #b5b5b5;
+  margin: 0 6px;
 }
 
 
@@ -60,3 +218,72 @@
 
 
 
+
+
+
+
+
+/* ================= FIX MẤT Ô ================= */
+
+/* ép table về đúng chuẩn */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+/* ép đúng cấu trúc bảng */
+tr {
+  height: 22px;
+}
+
+th, td {
+  border: 1px solid #cfcfcf;
+  text-align: center;
+  padding: 0;
+}
+
+/* ================= SMARTSCHEDULER STYLE ================= */
+
+/* tiêu đề khối */
+.title {
+  height: 22px;
+  line-height: 22px;
+  padding-left: 8px;
+  font-weight: bold;
+  background: #f2f2f2;
+  border-bottom: 1px solid #b5b5b5;
+}
+
+/* bảng TKB */
+.tkb th {
+  height: 24px;
+  background: #fafafa;
+  font-weight: bold;
+}
+
+.tkb td {
+  height: 20px; /* 👈 CỰC KỲ QUAN TRỌNG */
+}
+
+/* TKB tổng nhỏ hơn */
+.tkb-big td {
+  height: 18px;
+}
+
+/* vạch xanh chia buổi */
+.tkb tr:nth-child(7) td {
+  border-top: 2px solid #2f63c6;
+}
+
+/* 3 bảng dưới đều nhau */
+.bottom {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+
+/* hover giống app */
+.tkb td:hover {
+  background: #eef4ff;
+}

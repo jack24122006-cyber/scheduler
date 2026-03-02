@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <title>SmartScheduler</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Segoe UI, Arial, sans-serif;
+      font-size: 13px;
+    }
+
+    .menu-bar {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 4px 8px;
+      background: #f5f5f5;
+      border-bottom: 1px solid #cfcfcf;
+    }
+
+    .menu-bar>li {
+      position: relative;
+      padding: 4px 10px;
+      cursor: default;
+    }
+
+    .submenu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 300px;
+      background: #fff;
+      border: 1px solid #cfcfcf;
+      list-style: none;
+      padding: 4px 0;
+      z-index: 1000;
+    }
+
+    .menu-bar>li:hover>.submenu {
+      display: block;
+    }
+
+    .submenu li {
+      position: relative;
+      padding: 5px 12px;
+      white-space: nowrap;
+    }
+
+    .submenu li:hover {
+      background: #e9e9e9;
+    }
+
+    .has-child::after {
+      content: "▶";
+      position: absolute;
+      right: 8px;
+      font-size: 11px;
+    }
+
+    .submenu .submenu {
+      top: 0;
+      left: 100%;
+      display: none;
+    }
+
+    .submenu li:hover>.submenu {
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+
+  <ul class="menu-bar">
+
+    <!-- ================= HỆ THỐNG ================= -->
+    <li>Hệ thống
+      <ul class="submenu">
+        <li onclick="openFile()">Tạo mới file dữ liệu</li>
+        <li onclick="openFile()">Mở file dữ liệu cũ</li>
+        <li onclick="openFile()">Sao lưu file dữ liệu</li>
+        <li onclick="backupAndOpen()">Sao lưu và mở file dữ liệu</li>
+        <li onclick="changePassword()">Thay đổi mật khẩu</li>
+
+        <li>Thoát</li>
+      </ul>
+    </li>
+
+    <!-- ================= DỮ LIỆU ================= -->
+    <li>Dữ liệu
+      <ul class="submenu">
+        <li onclick="openThongTinChung()">Thông tin chung</li>
+        <li onclick="openDuLieuKhoiHoc()">Dữ liệu khối học</li>
+
+        <li class="has-child">Lớp học
+          <ul class="submenu">
+            <li>Danh sách lớp học</li>
+            <li>Danh sách nhóm lớp học</li>
+          </ul>
+        </li>
+
+        <li class="has-child">Giáo viên
+          <ul class="submenu">
+            <li>Danh sách giáo viên</li>
+            <li>Danh sách nhóm giáo viên</li>
+            <li>Giáo viên chủ nhiệm</li>
+            <li>Giáo viên kiêm nhiệm</li>
+            <li>Tổ trưởng chuyên môn</li>
+          </ul>
+        </li>
+
+        <li class="has-child">Môn học
+          <ul class="submenu">
+            <li>Danh sách môn học</li>
+            <li>Danh sách nhóm môn học</li>
+            <li>Số tiết chuẩn môn học</li>
+          </ul>
+        </li>
+
+        <li class="has-child">Phòng học
+          <ul class="submenu">
+            <li>Danh sách phòng học</li>
+            <li>Danh sách nhóm phòng học</li>
+          </ul>
+        </li>
+
+        <li>Dữ liệu ngoại lệ</li>
+        <li>Bảng phân công giảng dạy</li>
+        <li>Bảng phân công giảng dạy ghép</li>
+      </ul>
+    </li>
+
+    <!-- ================= RÀNG BUỘC TKB (ĐẦY ĐỦ) ================= -->
+    <li>Ràng buộc TKB
+      <ul class="submenu">
+
+        <li class="has-child">Yêu cầu giáo viên
+          <ul class="submenu">
+            <li>Giới hạn ngày & buổi dạy / tuần</li>
+            <li>Giới hạn số tiết / buổi</li>
+            <li>Giới hạn số tiết / buổi / lớp</li>
+            <li>Giới hạn số giáo án / buổi</li>
+            <li>Giới hạn buổi sáng & chiều</li>
+            <li>Chỉ dạy 1 buổi / ngày</li>
+            <li>Không dạy tiết 5 & tiết 1</li>
+            <li>Chỉ dạy 1 địa điểm / buổi</li>
+            <li>Có tiết trống giữa 2 địa điểm</li>
+            <li>Không di chuyển 2 lần / buổi</li>
+          </ul>
+        </li>
+
+        <li class="has-child">Yêu cầu môn học
+          <ul class="submenu">
+            <li>Số buổi có tiết liền</li>
+            <li>Tránh tiết 2-3</li>
+            <li>Tránh tiết 3-4</li>
+            <li>Tránh theo thứ trong tuần</li>
+            <li>Giới hạn buổi học của môn học</li>
+            <li>Giới hạn tiết / buổi / tuần</li>
+            <li>Giới hạn nhóm lớp học / 1 buổi</li>
+            <li>Giới hạn nhóm giáo viên / 1 buổi</li>
+            <li>Giới hạn nhóm phòng học / 1 buổi</li>
+            <li>Học cách ngày</li>
+            <li>Giới hạn số tiết / 1 buổi</li>
+            <li>Giới hạn số buổi học</li>
+            <li>Giới hạn số lớp học, giáo viên, phòng học</li>
+
+          </ul>
+        </li>
+
+
+        <li class="has-child">Cố định tiết nghỉ môn học
+          <ul class="submenu">
+            <li>Cố định theo lớp học</li>
+            <li>Cố định theo giáo viên</li>
+            <li>Cố định theo phòng học</li>
+            <li>Cố định theo nhóm lớp học</li>
+            <li>Cố định theo nhóm giáo viên</li>
+            <li>Cố định theo nhóm phòng học</li>
+            <li>Xóa cố định tiết nghỉ</li>
+          </ul>
+        </li>
+
+
+        <li class="has-child">Yêu cầu nhóm môn học
+          <ul class="submenu">
+            <li>Giới hạn buổi học của nhóm môn học</li>
+            <li>Giới hạn số tiết của nhóm môn học / 1 buổi / 1 tuần</li>
+            <li>Giới hạn nhóm lớp học / 1 buổi</li>
+            <li>Giới hạn nhóm giáo viên / 1 buổi</li>
+            <li>Giới hạn nhóm phòng học / 1 buổi</li>
+            <li>Giới hạn số tiết / 1 buổi</li>
+            <li>Giới hạn số môn học / 1 buổi</li>
+            <li>Giới hạn số buổi học</li>
+            <li>Giới hạn số lớp học, giáo viên, phòng học</li>
+            <li>Cố định tiết nghỉ nhóm môn học</li>
+          </ul>
+        </li>
+
+        <li class="has-child">Cố định tiết nghỉ
+          <ul class="submenu">
+            <li>Theo lớp học</li>
+            <li>Theo giáo viên</li>
+            <li>Theo môn học</li>
+            <li>Theo phòng học</li>
+          </ul>
+        </li>
+
+        <li class="has-child">Giới hạn theo thời điểm
+          <ul class="submenu">
+            <li>Theo nhóm lớp</li>
+            <li>Theo nhóm giáo viên</li>
+            <li>Theo nhóm môn</li>
+            <li>Theo nhóm phòng</li>
+          </ul>
+        </li>
+
+        <li>Xóa ràng buộc</li>
+      </ul>
+    </li>
+
+    <!-- ================= SOẠN THẢO (ĐẦY ĐỦ) ================= -->
+    <li>Soạn thảo
+      <ul class="submenu">
+
+        <li>Danh sách phương án xếp TKB</li>
+        <li>Sao lưu phương án xếp TKB</li>
+        <li>Phục hồi phương án xếp TKB</li>
+
+        <li class="has-child">Xóa TKB
+          <ul class="submenu">
+            <li>Xóa TKB toàn trường</li>
+            <li>Xóa TKB lớp học</li>
+            <li>Xóa TKB giáo viên</li>
+            <li>Xóa TKB môn học</li>
+            <li>Xóa TKB phòng học</li>
+          </ul>
+        </li>
+
+        <li class="has-child">Cố định TKB
+          <ul class="submenu">
+            <li>Cố định TKB toàn trường</li>
+            <li>Cố định TKB lớp học</li>
+            <li>Cố định TKB giáo viên</li>
+            <li>Cố định TKB môn học</li>
+            <li>Cố định TKB phòng học</li>
+          </ul>
+        </li>
+
+        <li>Xếp môn học</li>
+        <li>Xếp tiết dạy của GVCN</li>
+        <li>Soạn thảo TKB tự động</li>
+        <li>Tối ưu TKB tự động</li>
+
+        <li class="has-child">Kiểm tra & cảnh báo TKB
+          <ul class="submenu">
+            <li>TKB lớp học chưa có tiết xếp liền</li>
+            <li>TKB giáo viên chưa xếp xong</li>
+            <li>TKB có buổi có 2 tiết trống</li>
+            <li>TKB giáo viên có nhiều buổi trống tiết</li>
+            <li>TKB giáo viên có nhiều tiết 1 và tiết 5</li>
+          </ul>
+        </li>
+
+      </ul>
+    </li>
+
+
+    <!-- ================= THỐNG KÊ (ĐẦY ĐỦ) ================= -->
+    <li>Thống kê
+      <ul class="submenu">
+
+        <li>Thống kê TKB toàn trường</li>
+
+        <li class="has-child">Thống kê theo thời điểm
+          <ul class="submenu">
+            <li>Thống kê số lớp học trên 1 thời điểm</li>
+            <li>Thống kê số giáo viên trên 1 thời điểm</li>
+            <li>Thống kê số phòng học trên 1 thời điểm</li>
+          </ul>
+        </li>
+
+        <li class="has-child">Thống kê theo buổi
+          <ul class="submenu">
+            <li>Thống kê số lớp học trên 1 buổi</li>
+            <li>Thống kê số giáo viên trên 1 buổi</li>
+            <li>Thống kê số phòng học trên 1 buổi</li>
+          </ul>
+        </li>
+
+        <li class="has-child">Thống kê số tiết dạy
+          <ul class="submenu">
+            <li>Thống kê theo môn học</li>
+            <li>Thống kê theo nhóm lớp học</li>
+            <li>Thống kê theo nhóm giáo viên</li>
+            <li>Thống kê theo nhóm môn học</li>
+            <li>Thống kê theo nhóm phòng học</li>
+          </ul>
+        </li>
+
+        <li class="has-child">Thống kê số tiết trên một thời điểm
+          <ul class="submenu">
+            <li>Thống kê theo môn học</li>
+            <li>Thống kê theo nhóm lớp học</li>
+            <li>Thống kê theo nhóm giáo viên</li>
+            <li>Thống kê theo nhóm môn học</li>
+            <li>Thống kê theo nhóm phòng học</li>
+          </ul>
+        </li>
+
+        <li class="has-child">Thống kê số tiết trên một buổi học
+          <ul class="submenu">
+            <li>Thống kê theo môn học</li>
+            <li>Thống kê theo nhóm lớp học</li>
+            <li>Thống kê theo nhóm giáo viên</li>
+            <li>Thống kê theo nhóm môn học</li>
+            <li>Thống kê theo nhóm phòng học</li>
+          </ul>
+        </li>
+
+        <li>Thống kê bảng PCGD</li>
+        <li>Thống kê số tiết PCGD</li>
+
+      </ul>
+    </li>
+
+    <!-- ================= XEM ================= -->
+    <li>Xem
+      <ul class="submenu">
+        <li>TKB lớp học</li>
+        <li>TKB giáo viên</li>
+        <li>TKB phòng học</li>
+        <li>TKB toàn trường theo lớp học</li>
+        <li>TKB toàn trường theo giáo viên</li>
+        <li>TKB toàn trường theo phòng học</li>
+      </ul>
+    </li>
+
+    <!-- ================= TRỢ GIÚP ================= -->
+    <li>Trợ giúp
+      <ul class="submenu">
+        <li>Hướng dẫn sử dụng</li>
+        <li>Trợ lý ảo AI</li>
+        <li>Thông tin thêm</li>
+        <li>Đăng ký sử dụng</li>
+        <li>Cập nhật phiên bản</li>
+      </ul>
+    </li>
+
+  </ul>
+  <input type="file" id="fileInput" style="display:none">
+  </ul>
+
+  <input type="file" id="fileInput" style="display:none">
+
+  <script>
+    function openFile() {
+      document.getElementById("fileInput").click();
+    }
+
+    function newFile() {
+      alert("Tạo mới file dữ liệu\n(Sau này gắn logic tạo file)");
+    }
+
+    function backupFile() {
+      const data = "Du lieu sao luu";
+      const blob = new Blob([data], { type: "text/plain" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "backup_tkb.txt";
+      a.click();
+    }
+
+    function backupAndOpen() {
+      backupFile();
+      setTimeout(openFile, 300);
+    }
+  </script>
+
+</body>
+
+</html>
+<div id="passwordModal" style="display:none;position:fixed;inset:0;
+background:rgba(0,0,0,.3);z-index:2000;">
+  <div style="width:300px;margin:120px auto;background:#fff;padding:15px;">
+    <b>Thay đổi mật khẩu</b><br><br>
+
+    <input type="password" placeholder="Mật khẩu cũ" style="width:100%;margin-bottom:6px">
+    <input type="password" placeholder="Mật khẩu mới" style="width:100%;margin-bottom:6px">
+    <input type="password" placeholder="Nhập lại mật khẩu" style="width:100%;margin-bottom:10px">
+
+    <div style="text-align:right">
+      <button onclick="closePassword()">Hủy</button>
+      <button onclick="savePassword()">Lưu</button>
+    </div>
+  </div>
+</div>
+<script>
+  function changePassword() {
+    passwordModal.style.display = "block";
+  }
+  function closePassword() {
+    passwordModal.style.display = "none";
+  }
+  function savePassword() {
+    alert("Đã đổi mật khẩu (demo)");
+    closePassword();
+  }
+</script>
+
+
+
+</body>
+
+</html>
+
+
+
+
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <title>SmartScheduler</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Segoe UI, Arial, sans-serif;
+      font-size: 13px;
+    }
+
+    /* MENU */
+    .menu-bar {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 4px 8px;
+      background: #f5f5f5;
+      border-bottom: 1px solid #cfcfcf;
+    }
+
+    .menu-bar>li {
+      position: relative;
+      padding: 4px 10px;
+    }
+
+    .submenu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 300px;
+      background: #fff;
+      border: 1px solid #cfcfcf;
+      list-style: none;
+      padding: 4px 0;
+    }
+
+    .menu-bar>li:hover>.submenu {
+      display: block;
+    }
+
+    .submenu li {
+      padding: 5px 12px;
+    }
+
+    .submenu li:hover {
+      background: #e9e9e9;
+    }
+
+    /* TOOLBAR */
+    .toolbar {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 8px;
+      background: #f0f0f0;
+      border-bottom: 1px solid #cfcfcf;
+    }
+
+    .toolbar button {
+      background: white;
+      border: 1px solid transparent;
+      padding: 4px 6px;
+      cursor: pointer;
+    }
+
+    .toolbar button:hover {
+      background: #eaf4ff;
+      border-color: #0078d7;
+    }
+
+    .divider {
+      width: 1px;
+      height: 18px;
+      background: #bbb;
+      margin: 0 6px;
+    }
+  </style>
+</head>
+
+<body>
+  <input type="file" id="fileInput" hidden>
+
+  <script>
+    function newFile() { alert("Tạo mới file"); }
+    function openFile() {
+      document.getElementById("fileInput").click();
+    }
+  </script>
+
+
+  <!-- ===== MODAL THÔNG TIN CHUNG ===== -->
+  <div id="thongTinChungModal" style="
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.3);
+z-index:9999;
+">
+    <div style="
+    width:520px;
+    margin:80px auto;
+    background:#f7f7f7;
+    border:1px solid #bbb;
+  ">
+      <div style="background:#e9e9e9;padding:6px 10px;font-weight:bold">
+        Thông tin chung
+        <span style="float:right;cursor:pointer" onclick="closeThongTinChung()">✕</span>
+      </div>
+
+      <div style="padding:12px">
+        <label>Tên trường</label>
+        <input style="width:100%"><br><br>
+
+        <label>Địa chỉ</label>
+        <input style="width:100%"><br><br>
+
+        <label>Điện thoại</label>
+        <input style="width:100%"><br><br>
+
+        <label>Email</label>
+        <input style="width:100%"><br><br>
+
+        <div style="display:flex;gap:10px">
+          <div style="flex:1">
+            <label>Năm học</label>
+            <select style="width:100%">
+              <option>2025 - 2026</option>
+            </select>
+          </div>
+          <div style="flex:1">
+            <label>Học kỳ</label>
+            <select style="width:100%">
+              <option>1</option>
+              <option selected>2</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="text-align:right;margin-top:15px">
+          <button onclick="closeThongTinChung()">Hủy bỏ</button>
+          <button onclick="saveThongTinChung()">Chấp nhận</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openThongTinChung() {
+      thongTinChungModal.style.display = "block";
+    }
+    function closeThongTinChung() {
+      thongTinChungModal.style.display = "none";
+    }
+    function saveThongTinChung() {
+      alert("Đã lưu (demo)");
+      closeThongTinChung();
+    }
+
+
+  </script>
+  <script>
+    function openDuLieuKhoiHoc() {
+      window.location.href = "./du-lieu-khoi-hoc.html";
+    }
+  </script>
+
+
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <title>SmartScheduler – Khối học</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Segoe UI, Arial, sans-serif;
+      font-size: 13px;
+    }
+
+    /* ===== TOOLBAR ===== */
+    .toolbar {
+      display: flex;
+      gap: 4px;
+      padding: 6px 8px;
+      background: #f0f0f0;
+      border-bottom: 1px solid #cfcfcf;
+    }
+
+    .toolbar button {
+      padding: 4px 8px;
+      background: #fff;
+      border: 1px solid #b5b5b5;
+      cursor: pointer;
+    }
+
+    .toolbar button:hover {
+      background: #eaf4ff;
+      border-color: #0078d7;
+    }
+
+    /* ===== MODAL ===== */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .3);
+      z-index: 9999;
+    }
+
+    .modal-box {
+      width: 380px;
+      margin: 120px auto;
+      background: #f7f7f7;
+      border: 1px solid #b5b5b5;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, .3);
+    }
+
+    .modal-header {
+      background: #e6e6e6;
+      padding: 6px 10px;
+      font-weight: 600;
+      border-bottom: 1px solid #b5b5b5;
+    }
+
+    .modal-body {
+      padding: 12px;
+    }
+
+    .modal-body label {
+      display: block;
+      margin-top: 8px;
+    }
+
+    .modal-body input {
+      width: 100%;
+      padding: 4px;
+    }
+
+    .modal-footer {
+      padding: 8px 10px;
+      text-align: right;
+      background: #f0f0f0;
+      border-top: 1px solid #b5b5b5;
+    }
+
+    .modal-footer button {
+      min-width: 80px;
+      padding: 4px 8px;
+    }
+  </style>
+
+
+
+  </body>
+
+</html>
