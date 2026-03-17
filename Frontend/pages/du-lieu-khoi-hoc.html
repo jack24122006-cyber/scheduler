@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dữ liệu khối học</title>
+    <link rel="stylesheet" href="../assets/css/menu.css" />
+    <link rel="stylesheet" href="../assets/css/du-lieu-khoi-hoc.css" />
+    \
+
+    <!-- MENU THƯ VIỆN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div id="menu"></div>
+
+    <!-- TOOLBAR -->
+    <div class="toolbar">
+      <button title="Tạo mới"><i class="fa-regular fa-file"></i></button>
+      <button title="Mở"><i class="fa-regular fa-folder-open"></i></button>
+      <button onclick="openKhoiHoc()" title="Thêm">
+        <i class="fa-solid fa-plus"></i>
+      </button>
+      <button title="Sửa"><i class="fa-regular fa-pen-to-square"></i></button>
+      <button title="Xóa"><i class="fa-regular fa-trash-can"></i></button>
+
+      <span class="tool-sep"></span>
+
+      <button title="Lên"><i class="fa-solid fa-arrow-up"></i></button>
+      <button title="Xuống"><i class="fa-solid fa-arrow-down"></i></button>
+      <button title="Lên đầu"><i class="fa-solid fa-angles-up"></i></button>
+      <button title="Xuống cuối">
+        <i class="fa-solid fa-angles-down"></i>
+      </button>
+    </div>
+
+    <!-- MODAL KHỐI HỌC -->
+    <form id="modalKhoiHoc" class="modal">
+      <div class="modal-box">
+        <div class="modal-header">
+          <span>Khối học</span>
+          <button type="button" class="close-btn" onclick="closeKhoiHoc()">
+            ×
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <div class="form-row">
+            <label for="tenKhoiHoc">Tên khối học</label>
+            <input type="text" id="tenKhoiHoc" name="tenKhoiHoc" required />
+          </div>
+
+          <div class="form-row">
+            <label for="maKhoiHoc">Mã khối học</label>
+            <input type="text" id="maKhoiHoc" name="maKhoiHoc" required />
+          </div>
+
+          <div class="form-row">
+            <label for="soKhoi">Số khối</label>
+            <input type="number" id="soKhoi" name="soKhoi" min="1" required />
+          </div>
+
+          <div class="form-row">
+            <label for="ghiChu">Ghi chú</label>
+            <textarea id="ghiChu" name="ghiChu" rows="3"></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="submit" class="btn-primary">Chấp nhận</button>
+
+          <button type="button" class="btn-secondary" onclick="closeKhoiHoc()">
+            Hủy bỏ
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <div class="table-container">
+      <table class="full-table">
+        <thead>
+          <tr>
+            <th>Select</th>
+            <th>ID</th>
+            <th>Tên khối</th>
+            <th>Mã khối</th>
+            <th>Số khối</th>
+            <th>Ghi chú</th>
+          </tr>
+        </thead>
+        <tbody id="gradeTableBody"></tbody>
+      </table>
+    </div>
+    
+    <script src="../assets/js/du-lieu-khoi-hoc.js"></script>
+    <script src="../assets/js/menu.js"></script>
+    
+  </body>
+</html>

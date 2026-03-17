@@ -1,0 +1,401 @@
+body{
+  margin:0;
+  font-family: Segoe UI, Arial, sans-serif;
+  font-size:13px;
+}
+
+/* ===== MENU BAR (1 hàng duy nhất) ===== */
+.menu-bar{
+  list-style:none;
+  display:flex;
+  align-items:center;
+  gap:16px;
+  margin:0;
+  padding:6px 10px;
+  background:#f5f5f5;
+  border-bottom:1px solid #ccc;
+}
+
+/* menu item */
+.menu-bar > li{
+  position:relative;
+  padding:4px 8px;
+  cursor:pointer;
+  user-select:none;
+}
+
+.menu-bar > li:hover{
+  text-decoration:underline;
+}
+
+/* ===== SUBMENU ===== */
+.submenu{
+  list-style:none;
+  position:absolute;
+  top:100%;
+  left:0;
+  margin:0;
+  padding:4px 0;
+  min-width:240px;
+  background:#fff;
+  border:1px solid #ccc;
+  display:none;
+  z-index:1000;
+}
+
+.submenu li{
+  padding:6px 10px;
+  cursor:pointer;
+}
+
+.submenu li:hover{
+  background:#e6f0ff;
+}
+
+/* hover hệ thống */
+.system:hover .submenu{
+  display:block;
+}
+
+/* ===== FORM ĐỔI MẬT KHẨU ===== */
+#passwordBox{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.3);
+  display:none;
+}
+
+#passwordBox .box{
+  background:#fff;
+  width:280px;
+  padding:15px;
+  margin:120px auto;
+  border-radius:4px;
+}
+
+
+/* ===== MENU TRƯỢT BẬC 2 ===== */
+
+/* submenu mặc định */
+.submenu{
+  list-style:none;
+  position:absolute;
+  top:100%;
+  left:0;
+  background:#fff;
+  border:1px solid #ccc;
+  padding:4px 0;
+  margin:0;
+  min-width:220px;
+  display:none;
+  z-index:1000;
+}
+
+/* hiện submenu khi hover */
+.menu-bar > li:hover > .submenu,
+.submenu > li:hover > .submenu{
+  display:block;
+}
+
+/* item trong submenu */
+.submenu li{
+  position:relative;
+  padding:6px 10px;
+  white-space:nowrap;
+  cursor:pointer;
+}
+
+/* hover item */
+.submenu li:hover{
+  background:#e6f0ff;
+}
+
+/* submenu bậc 2 xổ sang phải */
+.submenu-right{
+  top:0;
+  left:100%;
+}
+
+
+
+/* nền mờ */
+.modal{
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.3);
+}
+
+/* khung form */
+.modal-content{
+  background:#fff;
+  width:520px;
+  margin:70px auto;
+  border:1px solid #aaa;
+  font-size:13px;
+}
+
+/* tiêu đề */
+.modal-header{
+  padding:8px 10px;
+  font-weight:bold;
+  background:#f2f2f2;
+  border-bottom:1px solid #ccc;
+}
+
+/* nội dung */
+.modal-body{
+  padding:10px;
+}
+
+/* bảng form */
+.form-table{
+  width:100%;
+}
+
+.form-table td{
+  padding:5px;
+}
+
+.form-table td:first-child{
+  width:150px;
+}
+
+.form-table input,
+.form-table select{
+  width:100%;
+  box-sizing:border-box;
+}
+
+/* footer */
+.modal-footer{
+  padding:8px 10px;
+  text-align:right;
+  border-top:1px solid #ccc;
+} 
+
+/* THANH TOOLBA */
+.toolbar {
+  display: flex;
+  align-items: center;
+  padding: 4px 6px;
+  background: #efefef;
+  border-bottom: 1px solid #c8c8c8;
+  gap: 2px;
+}
+
+.toolbar button {
+  width: 30px;
+  height: 28px;
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  font-size: 16px;
+  color: #333;
+}
+
+.toolbar button:hover {
+  background: #e0e0e0;
+  border: 1px solid #9c9c9c;
+}
+
+.toolbar button:active {
+  background: #d0d0d0;
+}
+
+.sep {
+  width: 1px;
+  height: 20px;
+  background: #b5b5b5;
+  margin: 0 6px;
+}
+
+
+
+
+
+
+
+
+/* RESET */
+.menu-bar,
+.menu-bar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* MENU BAR */
+.menu-bar {
+  display: flex;
+  background: #f5f5f5;
+  border-bottom: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.menu-bar > li {
+  position: relative;
+  padding: 8px 14px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.menu-bar > li:hover {
+  background: #e6e6e6;
+}
+
+/* LINK */
+.menu-bar a {
+  color: #000;
+  text-decoration: none;
+  display: block;
+}
+
+/* SUBMENU CHUNG */
+.submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 220px;
+  background: #fff;
+  border: 1px solid #ccc;
+  z-index: 1000;
+}
+
+.submenu li {
+  position: relative;
+  padding: 7px 14px;
+}
+
+.submenu li:hover {
+  background: #eaf2ff;
+}
+
+/* SUBMENU CẤP 2 */
+.submenu-right {
+  top: 0;
+  left: 100%;
+}
+
+/* HIỂN THỊ */
+.menu-bar li:hover > .submenu {
+  display: block;
+}
+
+/* ACTIVE ITEM */
+.menu-bar li.active,
+.menu-bar li.active > a {
+  background: #dbe9ff;
+  font-weight: 600;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===== TOOLBAR ===== */
+
+.toolbar{
+  display:flex;
+  gap:8px;
+  padding:6px 10px;
+  background:#f5f5f5;
+  border-bottom:1px solid #ccc;
+}
+
+.tool-btn{
+  width:28px;
+  height:28px;
+  border:1px solid #ccc;
+  background:white;
+  cursor:pointer;
+}
+
+.tool-btn:hover{
+  background:#e8f0fe;
+}
+
+
+/* ===== POPUP ===== */
+
+.popup-overlay{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.2);
+  display:none;
+  align-items:center;
+  justify-content:center;
+}
+
+.popup-box{
+  width:420px;
+  background:white;
+  border:1px solid #ccc;
+  box-shadow:0 3px 10px rgba(0,0,0,0.2);
+}
+
+.popup-header{
+  background:#f3f3f3;
+  padding:8px 10px;
+  font-weight:bold;
+  display:flex;
+  justify-content:space-between;
+}
+
+.popup-body{
+  padding:15px;
+}
+
+.form-row{
+  margin-bottom:10px;
+}
+
+.form-row label{
+  display:inline-block;
+  width:80px;
+}
+
+.form-row input{
+  width:260px;
+  padding:4px;
+}
+
+.popup-footer{
+  padding:10px;
+  text-align:right;
+}
+
+.popup-footer button{
+  padding:5px 10px;
+}
+
+
+
+
+
+
+
+/* nền mờ */

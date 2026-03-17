@@ -1,0 +1,409 @@
+<ul class="menu-bar">
+  <li></li>
+  <li class="system">
+    <span>Hệ thống</span>
+    <ul class="submenu">
+      <li onclick="goTHIC()">Tạo mới file dữ liệu</li>
+      <li onclick="goTHIC()">Mở file dữ liệu cũ</li>
+      <li onclick="goTHIC()">Sao lưu file dữ liệu</li>
+      <li onclick="goTHIC()">Sao lưu và mở file dữ liệu</li>
+      <li onclick="openPassword()">Thay đổi mật khẩu</li>
+      <li onclick="exitWeb()">Thoát</li>
+    </ul>
+  </li>
+
+  <!-- MENU DỮ LIỆU -->
+
+  <li class="data-menu">
+    <span>Dữ liệu</span>
+    <ul class="submenu">
+      <li>
+        Thông tin chung
+        <ul class="submenu submenu-right">
+          <li onclick="openThongTinChung()">Thông tin chung</li>
+          <li onclick="openDuLieuKhoiHoc()">Dữ liệu khối học</li>
+        </ul>
+      </li>
+      <li>
+        <a href="/Frontend/pages/du-lieu-khoi-hoc.html">Dữ liệu lớp học</a>
+      </li>
+      <li>
+        Lớp học
+        <ul class="submenu submenu-right">
+          <li>Danh sách lớp học</li>
+          <li>Danh sách nhóm lớp học</li>
+        </ul>
+      </li>
+
+      <li>
+        Giáo viên
+        <ul class="submenu submenu-right">
+          <li>Danh sách giáo viên</li>
+          <li>Danh sách nhóm giáo viên</li>
+          <li>Giáo viên chủ nhiệm</li>
+          <li>Giáo viên kiêm nhiệm</li>
+          <li>Tổ trưởng chuyên môn</li>
+        </ul>
+      </li>
+
+      <li>
+        Môn học
+        <ul class="submenu submenu-right">
+          <li>Danh sách môn học</li>
+          <li>Danh sách nhóm môn học</li>
+          <li>Số tiết chuẩn môn học</li>
+        </ul>
+      </li>
+
+      <li>
+        Phòng học
+        <ul class="submenu submenu-right">
+          <li>Danh sách phòng học</li>
+          <li>Danh sách nhóm phòng học</li>
+        </ul>
+      </li>
+
+      <li>
+        Phân công giảng dạy
+        <ul class="submenu submenu-right">
+          <li>Bảng phân công giảng dạy</li>
+          <li>Bảng phân công giảng dạy ghép</li>
+        </ul>
+      </li>
+
+      <li>Dữ liệu ngoại lệ</li>
+    </ul>
+  </li>
+
+  <!-- MENU RÀNG BUỘC TKB -->
+
+  <li class="has-sub">
+    Ràng buộc TKB
+    <ul class="submenu">
+      <!-- ===== YÊU CẦU GIÁO VIÊN ===== -->
+      <li>
+        Yêu cầu của giáo viên
+        <ul class="submenu submenu-right">
+          <li>Giới hạn số ngày dạy & buổi dạy / tuần</li>
+          <li>Giới hạn số tiết dạy / buổi</li>
+          <li>Giới hạn số tiết dạy / buổi / lớp</li>
+          <li>Giới hạn số giáo án / buổi</li>
+          <li>Giới hạn số buổi dạy sáng & chiều</li>
+          <li>Chỉ dạy 1 buổi / ngày</li>
+          <li>Không dạy tiết 5 sáng & tiết 1 chiều</li>
+          <li>Chỉ dạy 1 địa điểm / buổi</li>
+          <li>Có tiết trống giữa 2 địa điểm</li>
+          <li>Không di chuyển 2 lần / buổi</li>
+        </ul>
+      </li>
+
+      <!-- ===== YÊU CẦU MÔN HỌC ===== -->
+      <li>
+        Yêu cầu của môn học
+        <ul class="submenu submenu-right">
+          <li>Số buổi học có tiết xếp liền</li>
+          <li>Tránh xếp tiết 2-3</li>
+          <li>Tránh xếp tiết 3-4</li>
+          <li>Tránh xếp vào các thứ trong tuần</li>
+          <li>Giới hạn buổi học của môn học</li>
+          <li>Giới hạn số tiết / buổi / tuần</li>
+          <li>Giới hạn nhóm lớp học / buổi</li>
+          <li>Giới hạn nhóm giáo viên / buổi</li>
+          <li>Giới hạn nhóm phòng học / buổi</li>
+          <li>Học cách ngày</li>
+          <li>Giới hạn số buổi học</li>
+          <li>Giới hạn số lớp, giáo viên, phòng</li>
+          <li class="divider"></li>
+          <li>Cố định tiết nghỉ môn học</li>
+          <li>Cố định theo lớp học</li>
+          <li>Cố định theo giáo viên</li>
+          <li>Cố định theo phòng học</li>
+          <li>Cố định theo nhóm lớp</li>
+          <li>Cố định theo nhóm giáo viên</li>
+          <li>Cố định theo nhóm phòng học</li>
+          <li class="danger">Xóa cố định tiết nghỉ</li>
+        </ul>
+      </li>
+
+      <!-- ===== NHÓM MÔN HỌC ===== -->
+      <li>
+        Yêu cầu nhóm môn học
+        <ul class="submenu submenu-right">
+          <li>Giới hạn buổi học nhóm môn</li>
+          <li>Giới hạn số tiết / buổi / tuần</li>
+          <li>Giới hạn nhóm lớp / buổi</li>
+          <li>Giới hạn nhóm giáo viên / buổi</li>
+          <li>Giới hạn nhóm phòng học / buổi</li>
+          <li>Giới hạn số tiết / buổi</li>
+          <li>Giới hạn số môn học / buổi</li>
+          <li>Giới hạn số buổi học</li>
+          <li>Giới hạn lớp, giáo viên, phòng</li>
+          <li class="divider"></li>
+          <li>Cố định tiết nghỉ nhóm môn</li>
+        </ul>
+      </li>
+
+      <!-- ===== GIỚI HẠN THỜI ĐIỂM ===== -->
+      <li>
+        Giới hạn số tiết trong 1 thời điểm
+        <ul class="submenu submenu-right">
+          <li>Giới hạn theo nhóm lớp học</li>
+          <li>Giới hạn theo nhóm giáo viên</li>
+          <li>Giới hạn theo nhóm môn học</li>
+          <li>Giới hạn theo nhóm phòng học</li>
+        </ul>
+      </li>
+      <li class="divider"></li>
+      <li class="danger">Xóa ràng buộc</li>
+    </ul>
+  </li>
+
+  <!-- MENU SOẠN THẢO -->
+
+  <li class="has-sub">
+    Soạn thảo
+    <ul class="submenu">
+      <!-- PHƯƠNG ÁN -->
+      <li>
+        Phương án xếp TKB
+        <ul class="submenu submenu-right">
+          <li>Danh sách phương án xếp TKB</li>
+          <li>Sao lưu phương án xếp TKB</li>
+          <li>Phục hồi phương án xếp TKB</li>
+        </ul>
+      </li>
+
+      <!-- XÓA TKB -->
+      <li>
+        Xóa TKB
+        <ul class="submenu submenu-right">
+          <li>Xóa TKB toàn trường</li>
+          <li>Xóa TKB lớp học</li>
+          <li>Xóa TKB giáo viên</li>
+          <li>Xóa TKB môn học</li>
+          <li>Xóa TKB phòng học</li>
+        </ul>
+      </li>
+
+      <!-- CỐ ĐỊNH -->
+      <li>
+        Cố định TKB
+        <ul class="submenu submenu-right">
+          <li>Cố định TKB toàn trường</li>
+          <li>Cố định TKB lớp học</li>
+          <li>Cố định TKB giáo viên</li>
+          <li>Cố định TKB môn học</li>
+          <li>Cố định TKB phòng học</li>
+        </ul>
+      </li>
+
+      <!-- XẾP & TỐI ƯU -->
+      <li>
+        Xếp & tối ưu TKB
+        <ul class="submenu submenu-right">
+          <li>Xếp môn học</li>
+          <li>Xếp tiết dạy của GVCN</li>
+          <li>Soạn thảo TKB tự động</li>
+          <li>Tối ưu TKB tự động</li>
+        </ul>
+      </li>
+
+      <!-- KIỂM TRA -->
+      <li>
+        Kiểm tra & thống kê TKB
+        <ul class="submenu submenu-right">
+          <li>TKB lớp học chưa có tiết xếp liền</li>
+          <li>TKB giáo viên chưa xếp xong</li>
+          <li>TKB có buổi có 2 tiết trống</li>
+          <li>TKB giáo viên có nhiều buổi trống tiết</li>
+          <li>TKB giáo viên có nhiều tiết 1 và tiết 5</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+
+  <!-- MENU THỐNG KÊ -->
+
+  <li class="has-sub">
+    Thống kê
+    <ul class="submenu">
+      <!-- TỔNG QUÁT -->
+      <li>
+        Thống kê tổng quát
+        <ul class="submenu submenu-right">
+          <li>Thống kê TKB toàn trường</li>
+        </ul>
+      </li>
+
+      <!-- THEO THỜI ĐIỂM -->
+      <li>
+        Thống kê theo thời điểm
+        <ul class="submenu submenu-right">
+          <li>Thống kê số lớp học trên 1 thời điểm</li>
+          <li>Thống kê số giáo viên trên 1 thời điểm</li>
+          <li>Thống kê số phòng học trên 1 thời điểm</li>
+          <li class="divider"></li>
+          <li>Thống kê số tiết trên 1 thời điểm – theo môn học</li>
+          <li>Thống kê số tiết trên 1 thời điểm – theo nhóm lớp học</li>
+          <li>Thống kê số tiết trên 1 thời điểm – theo nhóm giáo viên</li>
+          <li>Thống kê số tiết trên 1 thời điểm – theo nhóm môn học</li>
+          <li>Thống kê số tiết trên 1 thời điểm – theo nhóm phòng học</li>
+        </ul>
+      </li>
+
+      <!-- THEO BUỔI -->
+      <li>
+        Thống kê theo buổi học
+        <ul class="submenu submenu-right">
+          <li>Thống kê số lớp học trên 1 buổi</li>
+          <li>Thống kê số giáo viên trên 1 buổi</li>
+          <li>Thống kê số phòng học trên 1 buổi</li>
+          <li class="divider"></li>
+          <li>Thống kê số tiết trên 1 buổi – theo môn học</li>
+          <li>Thống kê số tiết trên 1 buổi – theo nhóm lớp học</li>
+          <li>Thống kê số tiết trên 1 buổi – theo nhóm giáo viên</li>
+          <li>Thống kê số tiết trên 1 buổi – theo nhóm môn học</li>
+          <li>Thống kê số tiết trên 1 buổi – theo nhóm phòng học</li>
+        </ul>
+      </li>
+
+      <!-- SỐ TIẾT DẠY -->
+      <li>
+        Thống kê số tiết dạy
+        <ul class="submenu submenu-right">
+          <li>Thống kê theo môn học</li>
+          <li>Thống kê theo nhóm lớp học</li>
+          <li>Thống kê theo nhóm giáo viên</li>
+          <li>Thống kê theo nhóm môn học</li>
+          <li>Thống kê theo nhóm phòng học</li>
+        </ul>
+      </li>
+
+      <!-- PCGD -->
+      <li>
+        Thống kê PCGD
+        <ul class="submenu submenu-right">
+          <li>Thống kê bảng PCGD</li>
+          <li>Thống kê số tiết PCGD</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+
+  <!-- MENU XEM -->
+
+  <li class="has-sub">
+    Xem
+    <ul class="submenu">
+      <!-- XEM THEO ĐỐI TƯỢNG -->
+      <li>
+        Xem theo đối tượng
+        <ul class="submenu submenu-right">
+          <li onclick="openTKB_LopHoc()">TKB lớp học</li>
+          <li onclick="openTKB_GiaoVien()">TKB giáo viên</li>
+          <li onclick="openTKB_PhongHoc()">TKB phòng học</li>
+        </ul>
+      </li>
+
+      <!-- XEM TOÀN TRƯỜNG -->
+      <li>
+        Xem TKB toàn trường
+        <ul class="submenu submenu-right">
+          <li onclick="openTKB_ToanTruong_Lop()">Theo lớp học</li>
+          <li onclick="openTKB_ToanTruong_GV()">Theo giáo viên</li>
+          <li onclick="openTKB_ToanTruong_Phong()">Theo phòng học</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+
+  <!-- MENU TRỢ GIÚP -->
+
+  <li class="has-sub">
+    Trợ giúp
+    <ul class="submenu">
+      <!-- HƯỚNG DẪN & HỖ TRỢ -->
+      <li>
+        Hướng dẫn & hỗ trợ
+        <ul class="submenu submenu-right">
+          <li onclick="openHuongDan()">Hướng dẫn sử dụng</li>
+          <li onclick="openTroLyAI()">Trợ lý ảo AI</li>
+          <li onclick="openThongTinThem()">Thông tin thêm</li>
+        </ul>
+      </li>
+
+      <!-- ĐĂNG KÝ -->
+      <li>
+        Bản quyền & đăng ký
+        <ul class="submenu submenu-right">
+          <li onclick="openDangKy()">Đăng ký sử dụng</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+<!-- FORM -->
+<div id="passwordBox">
+  <div class="box">
+    <h3>Thay đổi mật khẩu</h3>
+    <input type="password" placeholder="Mật khẩu cũ" />
+    <input type="password" placeholder="Mật khẩu mới" />
+    <input type="password" placeholder="Nhập lại mật khẩu" />
+    <button onclick="closePassword()">Đóng</button>
+  </div>
+</div>
+
+<div id="thongTinChungBox" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">Thông tin chung</div>
+
+    <div class="modal-body">
+      <table class="form-table">
+        <tr>
+          <td>Tên trường</td>
+          <td><input type="text" /></td>
+        </tr>
+        <tr>
+          <td>Địa chỉ</td>
+          <td><input type="text" /></td>
+        </tr>
+        <tr>
+          <td>Điện thoại</td>
+          <td><input type="text" /></td>
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td><input type="text" /></td>
+        </tr>
+      </table>
+
+      <hr />
+
+      <table class="form-table">
+        <tr>
+          <td>Năm học</td>
+          <td>
+            <select>
+              <option>2025 - 2026</option>
+              <option>2026 - 2027</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>Học kỳ</td>
+          <td>
+            <select>
+              <option>1</option>
+              <option>2</option>
+            </select>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="modal-footer">
+      <button>Chấp nhận</button>
+      <button onclick="closeThongTinChung()">Hủy bỏ</button>
+    </div>
+  </div>
+</div>
